@@ -14,6 +14,8 @@ CORS(app)  # Allow frontend (Angular) to access this API
 MODEL_PATH = "./models/tinyllama-1.1b-chat-v1.0.Q6_K.gguf"
 MODEL_URL = 'https://huggingface.co/TheBloke/TinyLlama-1.1B-Chat-v1.0-GGUF/resolve/main/tinyllama-1.1b-chat-v1.0.Q6_K.gguf'
 
+os.makedirs(os.path.dirname(MODEL_PATH), exist_ok=True)
+
 if not os.path.exists(MODEL_PATH):
     print("Downloading model...")
     urllib.request.urlretrieve(MODEL_URL, MODEL_PATH)
