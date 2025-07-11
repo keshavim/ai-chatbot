@@ -1,0 +1,15 @@
+just some terminal comands
+
+
+curl -X POST http://localhost:5000/chat \
+-H "Content-Type: application/json" \
+-d '{
+    "messages": [
+        {"role": "user", "content": "What is machine learning?"}
+    ]
+}'
+
+
+docker
+docker build -t ai-chatbot .
+docker run -p 5000:5000 -v "$PWD/models:/app/models" ai-chatbot
