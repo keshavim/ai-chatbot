@@ -1,0 +1,16 @@
+<div class="chat-container">
+  <h2>AI Chatbot</h2>
+
+  <div class="chat-box">
+    <div *ngFor="let msg of messages">
+      <div [ngClass]="msg.role">{{ msg.role }}: {{ msg.content }}</div>
+    </div>
+  </div>
+
+  <div class="input-area">
+    <input [(ngModel)]="userMessage" (keydown.enter)="sendMessage()" placeholder="Type your message..." />
+    <button (click)="sendMessage()" [disabled]="loading">Send</button>
+  </div>
+
+  <div *ngIf="loading">Thinking...</div>
+</div>

@@ -1,7 +1,10 @@
+import urllib
+
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from llama_cpp import Llama
 import os
+import urllib.request
 
 # --- Initialize Flask app ---
 app = Flask(__name__)
@@ -9,6 +12,11 @@ CORS(app)  # Allow frontend (Angular) to access this API
 
 # --- Load local GGUF model  ---
 MODEL_PATH = "./models/tinyllama-1.1b-chat-v1.0.Q6_K.gguf"
+MODEL_URL = 'https://huggingface.co/TheBloke/TinyLlama-1.1B-Chat-v1.0-GGUF/resolve/main/tinyllama-1.1b-chat-v1.0.Q6_K.gguf'
+
+if not os.path.exists(MODEL_PATH):
+    print("Downloading model...")
+    urllib.request.urlretrieve(MODEL_URL, MODEL_PATH)
 
 # Initialize LLaMA model
 llm = Llama(
